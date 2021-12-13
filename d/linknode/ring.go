@@ -19,8 +19,41 @@ func (r *Ring) Next() *Ring {
 	return r.next
 }
 
+func (r *Ring) Move(n int) *Ring{
+	if r.next == nil{
+		return r.init()
+	}
+
+	if n>0{
+		for ;n>0;n--{
+			r = r.next
+		}
+	}else{
+		for ;n<0;n++{
+			r = r.pre
+		}
+	}
+
+	return r
+}
+
+func (r *Ring) Link(s *Ring) *Ring{
+	n := r.Next()
+	if s != nil{
+		p := s.Prev()
+
+		s.next = n
+		s.pre = r
+
+		p.next = n
+		n.pre = p
+	}
+
+	return n
+}
+
 func (r *Ring) Prev() *Ring  {
-	if r.pre == nil{
+	if r.next == nil{
 		return r.init()
 	}
 	

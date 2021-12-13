@@ -9,8 +9,8 @@ type Ring struct {
 }
 
 func main() {
-	//linkNewTest()
-	deleteTest()
+	linkNewTest()
+	//deleteTest()
 }
 
 func linkNewTest() {
