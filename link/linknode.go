@@ -1,4 +1,4 @@
-package linknode
+package link
 
 import "fmt"
 
