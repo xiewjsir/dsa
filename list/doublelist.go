@@ -129,8 +129,8 @@ func (list *doubleList) PopFromHead(n int) *listNode {
 	list.lock.Lock()
 	defer list.lock.Unlock()
 	
-	if n > list.len {
-		panic("index out")
+	if n >= list.len {
+		return nil
 	}
 	
 	node := list.head
@@ -165,8 +165,8 @@ func (list *doubleList) PopFromTail(n int) *listNode {
 	list.lock.Lock()
 	defer list.lock.Unlock()
 	
-	if n > list.len {
-		panic("index out")
+	if n >= list.len {
+		return nil
 	}
 	
 	node := list.head

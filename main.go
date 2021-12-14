@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"unsafe"
 )
 
 func counting(c chan<- int){
@@ -12,6 +13,8 @@ func counting(c chan<- int){
 }
 
 func main() {
+	mp := rune(1)
+	fmt.Println(unsafe.Sizeof(mp))
 	msg := "Starting main"
 	fmt.Println(msg)
 	bus := make(chan int)
