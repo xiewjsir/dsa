@@ -11,3 +11,13 @@ func TestXxHash(t *testing.T) {
 		fmt.Printf("xxhash('%s')=%d\n", key, hashAlgorithm([]byte(key)))
 	}
 }
+
+func TestHashMap(t *testing.T) {
+	hashMap := NewHashMap(16)
+	for i:=0;i<35;i++{
+		hashMap.Put(fmt.Sprintf("%d",i),fmt.Sprintf("v%d",i))
+	}
+
+	hashMap.Range()
+}
+

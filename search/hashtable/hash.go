@@ -1,10 +1,11 @@
 package hashtable
 
 import (
+	"fmt"
 	"log"
 	"math"
 	"sync"
-	
+
 	"github.com/OneOfOne/xxhash"
 )
 
@@ -33,12 +34,12 @@ func NewHashMap(capacity int) *HashMap {
 		// 否则，实际大小为>= capacity 的第一个 2^k
 		capacity = 1 << int(math.Ceil(math.Log2(float64(capacity))))
 	}
-	
+
 	m := new(HashMap)
 	m.array = make([]*keyPairs, capacity, capacity)
 	m.capacity = capacity
 	m.capacityMask = capacity - 1
-	
+
 	return m
 }
 
@@ -48,7 +49,7 @@ var hashAlgorithm = func(key []byte) uint64 {
 	if err != nil {
 		log.Println(err)
 	}
-	
+
 	return h.Sum64()
 }
 
@@ -67,9 +68,9 @@ func (m *HashMap) HashIndex(key string, mask int) int {
 func (m *HashMap) Put(key string, value interface{}) {
 	m.Lock()
 	defer m.Unlock()
-	
+
 	index := m.HashIndex(key, m.capacityMask)
-	
+
 	element := m.array[index]
 	if element == nil {
 		m.array[index] = &keyPairs{
@@ -78,23 +79,23 @@ func (m *HashMap) Put(key string, value interface{}) {
 		}
 	} else {
 		var lastPairs *keyPairs
-		
+
 		for element != nil {
 			if element.key == key {
 				element.value = value
 				return
 			}
-			
+
 			lastPairs = element
 			element = element.next
 		}
-		
+
 		lastPairs.next = &keyPairs{
 			key:   key,
 			value: value,
 		}
 	}
-	
+
 	newLen := m.len + 1
 	if float64(newLen)/float64(m.capacity) > expandFactor {
 		newM := new(HashMap)
@@ -107,7 +108,7 @@ func (m *HashMap) Put(key string, value interface{}) {
 				pairs = pairs.next
 			}
 		}
-		
+
 		m.array = newM.array
 		m.capacity = newM.capacity
 		m.capacityMask = newM.capacityMask
@@ -115,24 +116,69 @@ func (m *HashMap) Put(key string, value interface{}) {
 	m.len = newLen
 }
 
-func (m *HashMap) Get(key string)(value interface{},ok bool) {
+func (m *HashMap) Get(key string) (value interface{}, ok bool) {
 	m.Lock()
 	defer m.Unlock()
-	
+
 	index := m.HashIndex(key, m.capacityMask)
-	
+
 	element := m.array[index]
-	if element == nil{
+	if element == nil {
 		return
 	}
-	
-	for element != nil{
-		if element.key == key{
-			return element.value,true
+
+	for element != nil {
+		if element.key == key {
+			return element.value, true
 		}
-		
+
 		element = element.next
 	}
-	
+
 	return
+}
+
+func (m *HashMap) Delete(key string) {
+	m.Lock()
+	defer m.Unlock()
+
+	index := m.HashIndex(key, m.capacityMask)
+
+	element := m.array[index]
+
+	if element == nil {
+		return
+	}
+
+	if element.key == key {
+		m.array[index] = element.next
+		m.len--
+	} else {
+		nextElement := element.next
+		for nextElement != nil {
+			if nextElement.key == key {
+				element.next = nextElement.next
+				m.len--
+				return
+			}
+
+			element = nextElement
+			nextElement = nextElement.next
+		}
+	}
+
+}
+
+func (m *HashMap)Range()  {
+	m.Lock()
+	defer m.Unlock()
+
+	for _,pairs := range m.array{
+		for pairs !=nil{
+			fmt.Println(pairs.key,pairs.value)
+			pairs = pairs.next
+		}
+	}
+
+	fmt.Println()
 }
