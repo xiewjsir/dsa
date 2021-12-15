@@ -1,4 +1,4 @@
-package other
+package fibonacci
 
 // Fibonacci 递归
 func Fibonacci(n int) int {

@@ -1,4 +1,4 @@
-package queue
+package tree
 
 import (
 	"sync"
@@ -11,11 +11,11 @@ type LinkQueue struct {
 }
 
 type LinkNode struct {
-	Value    string
+	Value    *TreeNode
 	NextNode *LinkNode
 }
 
-func (l *LinkQueue) Add(v string) *LinkQueue {
+func (l *LinkQueue) Add(v *TreeNode) *LinkQueue {
 	l.lock.Lock()
 	defer l.lock.Unlock()
 	
@@ -37,7 +37,7 @@ func (l *LinkQueue) Add(v string) *LinkQueue {
 	return l
 }
 
-func (l *LinkQueue) Remove() string {
+func (l *LinkQueue) Remove() *TreeNode {
 	l.lock.Lock()
 	defer l.lock.Unlock()
 	

@@ -1,6 +1,10 @@
 package set
 
-import "sync"
+import (
+	"fmt"
+	"sync"
+	"unsafe"
+)
 
 type set struct {
 	m map[int]struct{}
@@ -23,7 +27,7 @@ func (s *set) Add(item int) {
 	s.len = len(s.m)
 }
 
-func (s *set) delete(item int) {
+func (s *set) Remove(item int) {
 	s.Lock()
 	defer s.Unlock()
 
@@ -73,4 +77,14 @@ func (s *set)List() []int {
 	}
 
 	return slice
+}
+
+// 为什么使用空结构体
+func other() {
+	a := struct{}{}
+	b := struct{}{}
+	if a == b {
+		fmt.Printf("right:%p\n", &a)
+	}
+	fmt.Println(unsafe.Sizeof(a))
 }

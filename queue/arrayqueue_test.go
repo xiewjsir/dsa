@@ -5,8 +5,8 @@ import (
 	"testing"
 )
 
-func TestArrayQueue(t *testing.T) {
-	queue := new(ArrayQueue)
+func TestarrayQueue(t *testing.T) {
+	queue := new(arrayQueue)
 	queue.Add("cat")
 	queue.Add("dog")
 	queue.Add("hen")

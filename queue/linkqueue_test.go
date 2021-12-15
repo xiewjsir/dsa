@@ -1,19 +1,19 @@
-package stack
+package queue
 
 import (
 	"fmt"
 	"testing"
 )
 
-func TestLinkStack(t *testing.T) {
-	linkStack := new(linkStack)
-	linkStack.Push("cat")
-	linkStack.Push("dog")
-	linkStack.Push("hen")
-	fmt.Println("size:", linkStack.Size())
-	fmt.Println("pop:", linkStack.Pop())
-	fmt.Println("pop:", linkStack.Pop())
-	fmt.Println("size:", linkStack.Size())
-	linkStack.Push("drag")
-	fmt.Println("pop:", linkStack.Pop())
+func TestLinkQueue(t *testing.T) {
+	linkQueue := new(LinkQueue)
+	linkQueue.Add("cat")
+	linkQueue.Add("dog")
+	linkQueue.Add("hen")
+	fmt.Println("size:", linkQueue.Size())
+	fmt.Println("pop:", linkQueue.Remove())
+	fmt.Println("pop:", linkQueue.Remove())
+	fmt.Println("size:", linkQueue.Size())
+	linkQueue.Add("drag")
+	fmt.Println("pop:", linkQueue.Remove())
 }

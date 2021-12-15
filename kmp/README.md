@@ -1,0 +1,2 @@
+- [KMP算法详解-彻底清楚了(转载+部分原创)](https://www.cnblogs.com/dusf/p/kmp.html)
+- [字符串匹配的KMP算法](http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html)

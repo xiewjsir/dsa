@@ -1,4 +1,4 @@
-package other
+package fibonacci
 
 import (
 	"fmt"
@@ -64,18 +64,18 @@ func TestFibonacci3(t *testing.T) {
 
 func BenchmarkFibonacci(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Fibonacci(100)
+		Fibonacci(15)
 	}
 }
 
 func BenchmarkFibonacci2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Fibonacci2(100,1,1)
+		Fibonacci2(15,1,1)
 	}
 }
 
 func BenchmarkFibonacci3(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Fibonacci3(100)
+		Fibonacci3(15)
 	}
 }

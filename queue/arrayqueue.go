@@ -3,18 +3,18 @@ package queue
 import "sync"
 
 type queue interface {
-	Add(v string) *ArrayQueue
+	Add(v string) *arrayQueue
 	Remove() string
 	Size() int
 }
 
-type ArrayQueue struct {
+type arrayQueue struct {
 	array []string
 	size  int
 	lock  sync.Mutex
 }
 
-func (a *ArrayQueue) Add(v string) *ArrayQueue {
+func (a *arrayQueue) Add(v string) *arrayQueue {
 	a.lock.Lock()
 	defer a.lock.Unlock()
 	
@@ -24,7 +24,7 @@ func (a *ArrayQueue) Add(v string) *ArrayQueue {
 	return a
 }
 
-func (a *ArrayQueue) Remove() string {
+func (a *arrayQueue) Remove() string {
 	a.lock.Lock()
 	defer a.lock.Unlock()
 	
@@ -53,6 +53,6 @@ func (a *ArrayQueue) Remove() string {
 	return v
 }
 
-func (a *ArrayQueue) Size() int {
+func (a *arrayQueue) Size() int {
 	return a.size
 }
