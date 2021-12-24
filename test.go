@@ -2,21 +2,12 @@ package main
 
 import (
 	"fmt"
-	"unsafe"
 )
 
-type Args struct {
-	num1 int
-	num2 int
-}
-
-type Flag struct {
-	num1 int8
-	num2 int32
-	num3 int16
-}
+const PtrSize = 4 << (^uintptr(0) >> 63)
 
 func main() {
-	fmt.Println(unsafe.Alignof(Args{}),unsafe.Sizeof(Args{}))
-	fmt.Println(unsafe.Alignof(Flag{}),unsafe.Sizeof(Flag{}))
+		fmt.Println(PtrSize,^PtrSize)
+		
+		fmt.Println(fmt.Sprintf("%b",^uintptr(0)))
 }

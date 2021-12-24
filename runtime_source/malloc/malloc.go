@@ -30,6 +30,8 @@ func small() {
 }
 
 func main() {
+	//var a int64 = 255 //runtime.convT64
+	// var s = "" //runtime.convTstring
 	//tiny()
 	//small()
 	large()
