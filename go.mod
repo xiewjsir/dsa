@@ -10,6 +10,7 @@ require (
 )
 
 require (
+	github.com/chai2010/errors v0.0.0-20200705094421-c57ad8baa2b0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
