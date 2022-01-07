@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	
 	// uintptr 指针指向地址的整型数字表示
 	// *uintptr 指针指向的地址
 	// **uintptr 指针的地址
@@ -20,3 +21,4 @@ func main() {
 	fmt.Println((**uintptr)(unsafe.Pointer(&data)),*(**uintptr)(unsafe.Pointer(&data)),**(**uintptr)(unsafe.Pointer(&data)))
 
 }
+
