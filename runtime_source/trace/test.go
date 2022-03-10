@@ -37,6 +37,6 @@ func main() {
 		fmt.Printf("%v: %v\n", i+1, prime)
 		ch = PrimeFilter2(ch, prime) // 基于新素数构造的过滤器
 	}
-	
-	http.ListenAndServe(":60000",nil)
+
+	http.ListenAndServe(":60000", nil)
 }

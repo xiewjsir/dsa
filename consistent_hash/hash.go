@@ -3,7 +3,7 @@ package hash
 import (
 	"crypto/md5"
 	"fmt"
-	
+
 	"github.com/spaolacci/murmur3"
 )
 

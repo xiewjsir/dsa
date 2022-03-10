@@ -24,7 +24,7 @@ func (r *Ring) Next() *Ring {
 	if r.next == nil {
 		return r.init()
 	}
-	
+
 	return r.next
 }
 
@@ -32,7 +32,7 @@ func (r *Ring) Prev() *Ring {
 	if r.next == nil {
 		return r.init()
 	}
-	
+
 	return r.prev
 }
 
@@ -40,7 +40,7 @@ func (r *Ring) Move(n int) *Ring {
 	if r.next == nil {
 		return r.init()
 	}
-	
+
 	if n > 0 {
 		for ; n > 0; n-- {
 			r = r.Next()
@@ -50,7 +50,7 @@ func (r *Ring) Move(n int) *Ring {
 			r = r.Prev()
 		}
 	}
-	
+
 	return r
 }
 
@@ -58,34 +58,34 @@ func (r *Ring) Link(s *Ring) *Ring {
 	n := r.Next()
 	if s != nil {
 		p := s.Prev()
-		
+
 		r.next = s
 		s.prev = r
-		
+
 		p.next = n
 		n.prev = p
 	}
-	
+
 	return n
 }
 
 func (r *Ring) Unlink(n int) *Ring {
-	if n < 0{
+	if n < 0 {
 		return nil
 	}
-	
-	return r.Link(r.Move(n+1))
+
+	return r.Link(r.Move(n + 1))
 }
 
 func (r *Ring) Len() (n int64) {
-	if r == nil{
+	if r == nil {
 		return
 	}
 
 	p := r
-	for{
+	for {
 		n++
-		if p.next == r{
+		if p.next == r {
 			break
 		}
 		p = p.next
@@ -97,7 +97,7 @@ func NewRing(n int) *Ring {
 	if n <= 0 {
 		return nil
 	}
-	
+
 	r := new(Ring)
 	r.Value = 0
 	p := r
@@ -107,6 +107,6 @@ func NewRing(n int) *Ring {
 	}
 	p.next = r
 	r.prev = p
-	
+
 	return r
 }

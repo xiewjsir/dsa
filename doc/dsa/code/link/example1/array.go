@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-
 //  打印出：
 //  [0 0 0 0 0]
 //  [8 9 7 0 0]

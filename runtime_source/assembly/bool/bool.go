@@ -9,5 +9,5 @@ var (
 )
 
 func main() {
-	fmt.Println(boolValue,trueValue,falseValue)
+	fmt.Println(boolValue, trueValue, falseValue)
 }

@@ -19,7 +19,7 @@ func main() {
     println(fnTwice()) // 2*2 => 4
     println(fnTwice()) // 4*2 => 8
 }
- */
+*/
 
 type FunTwiceClosure struct {
 	F uintptr
@@ -41,7 +41,7 @@ func NewTwiceFunClosure(x int) func() int {
 
 func main() {
 	fnTwice := NewTwiceFunClosure(1)
-	
+
 	println(fnTwice()) // 1*2 => 2
 	println(fnTwice()) // 2*2 => 4
 	println(fnTwice()) // 4*2 => 8

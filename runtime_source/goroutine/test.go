@@ -11,9 +11,9 @@ func GenerateNatural3() chan int {
 	ch := make(chan int)
 	go func() {
 		for i := 2; ; i++ {
-			log.Println("aaaa",i)
+			log.Println("aaaa", i)
 			ch <- i
-			log.Println("bbbb",i)
+			log.Println("bbbb", i)
 		}
 	}()
 	return ch
@@ -39,6 +39,6 @@ func main() {
 		fmt.Printf("%v: %v\n", i+1, prime)
 		ch = PrimeFilter3(ch, prime) // 基于新素数构造的过滤器
 	}
-	
-	time.Sleep(10*time.Second)
+
+	time.Sleep(10 * time.Second)
 }

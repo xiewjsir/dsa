@@ -16,7 +16,7 @@ func TestFibonacci(t *testing.T) {
 		7: 13,
 		8: 21,
 	}
-	
+
 	for key, val := range tests {
 		if n := Fibonacci(key); n != val {
 			t.Errorf(fmt.Sprintf("fibonacci %d expected be %d, but %d got", key, val, n))
@@ -35,9 +35,9 @@ func TestFibonacci2(t *testing.T) {
 		7: 13,
 		8: 21,
 	}
-	
+
 	for key, val := range tests {
-		if n := Fibonacci2(key,1,1); n != val {
+		if n := Fibonacci2(key, 1, 1); n != val {
 			t.Errorf(fmt.Sprintf("fibonacci2 %d expected be %d, but %d got", key, val, n))
 		}
 	}
@@ -54,7 +54,7 @@ func TestFibonacci3(t *testing.T) {
 		7: 13,
 		8: 21,
 	}
-	
+
 	for key, val := range tests {
 		if n := Fibonacci3(key); n != val {
 			t.Errorf(fmt.Sprintf("fibonacci3 %d expected be %d, but %d got", key, val, n))
@@ -70,7 +70,7 @@ func BenchmarkFibonacci(b *testing.B) {
 
 func BenchmarkFibonacci2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Fibonacci2(15,1,1)
+		Fibonacci2(15, 1, 1)
 	}
 }
 

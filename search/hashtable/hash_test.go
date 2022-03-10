@@ -14,10 +14,9 @@ func TestXxHash(t *testing.T) {
 
 func TestHashMap(t *testing.T) {
 	hashMap := NewHashMap(16)
-	for i:=0;i<35;i++{
-		hashMap.Put(fmt.Sprintf("%d",i),fmt.Sprintf("v%d",i))
+	for i := 0; i < 35; i++ {
+		hashMap.Put(fmt.Sprintf("%d", i), fmt.Sprintf("v%d", i))
 	}
 
 	hashMap.Range()
 }
-

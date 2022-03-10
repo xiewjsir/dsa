@@ -4,7 +4,7 @@ import "fmt"
 
 func getNext(p string) (next []int) {
 	plen := len(p)
-	next = make([]int,plen)
+	next = make([]int, plen)
 
 	j := 0
 	k := -1

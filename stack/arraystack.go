@@ -22,7 +22,7 @@ func NewStack() *ArrayStack {
 func (s *ArrayStack) Push(item string) *ArrayStack {
 	s.lock.Lock()
 	defer s.lock.Unlock()
-	
+
 	s.array = append(s.array, item)
 	s.size++
 	return s
@@ -31,28 +31,28 @@ func (s *ArrayStack) Push(item string) *ArrayStack {
 func (s *ArrayStack) Pop() string {
 	s.lock.Lock()
 	defer s.lock.Unlock()
-	
+
 	if s.size == 0 {
 		panic("stack is empty")
 	}
-	
+
 	v := s.array[s.size-1]
 	array := make([]string, s.size-1, s.size-1)
 	for i := 0; i < s.size-1; i++ {
 		array[i] = s.array[i]
 	}
-	
+
 	s.array = array
 	s.size--
-	
+
 	return v
 }
 
 func (s *ArrayStack) Peek() string {
-	if s.size == 0{
+	if s.size == 0 {
 		panic("stack is empty")
 	}
-	
+
 	return s.array[s.size-1]
 }
 

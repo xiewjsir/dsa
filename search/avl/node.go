@@ -12,16 +12,16 @@ func (node *AVLTreeNode) UpdateHeight() {
 	if node == nil {
 		return
 	}
-	
+
 	var leftHeight, rightHeight int64 = 0, 0
 	if node.Left != nil {
 		leftHeight = node.Left.Height
 	}
-	
+
 	if node.Right != nil {
 		rightHeight = node.Right.Height
 	}
-	
+
 	// 哪个子树高算哪棵的
 	maxHeight := leftHeight
 	if rightHeight > maxHeight {
@@ -36,55 +36,55 @@ func (node *AVLTreeNode) BalanceFactor() int64 {
 	if node.Left != nil {
 		leftHeight = node.Left.Height
 	}
-	
+
 	if node.Right != nil {
 		rightHeight = node.Right.Height
 	}
-	
+
 	return leftHeight - rightHeight
 }
 
-func (node *AVLTreeNode) Add(value int64) *AVLTreeNode{
-	if node == nil{
+func (node *AVLTreeNode) Add(value int64) *AVLTreeNode {
+	if node == nil {
 		return &AVLTreeNode{Value: value}
 	}
-	
-	if node.Value == value{
+
+	if node.Value == value {
 		node.Times++
 		return node
 	}
-	
+
 	var newTreeNode *AVLTreeNode
-	
-	if value < node.Value{
+
+	if value < node.Value {
 		node.Left = node.Left.Add(value)
 		factor := node.BalanceFactor()
-		if factor == 2{
-			if value < node.Left.Value{
+		if factor == 2 {
+			if value < node.Left.Value {
 				newTreeNode = RightRotation(node)
-			}else{
+			} else {
 				newTreeNode = LeftRightRotation(node)
 			}
 		}
-	}else{
+	} else {
 		node.Right = node.Right.Add(value)
 		factor := node.BalanceFactor()
-		if factor == -2{
-			if value > node.Right.Value{
+		if factor == -2 {
+			if value > node.Right.Value {
 				newTreeNode = LeftRotation(node)
-			}else{
+			} else {
 				newTreeNode = RightLeftRotation(node)
 			}
 		}
 	}
-	
-	if newTreeNode == nil{
+
+	if newTreeNode == nil {
 		node.UpdateHeight()
 		return node
-	}else{
+	} else {
 		newTreeNode.UpdateHeight()
 		return newTreeNode
 	}
-	
+
 	return node
 }

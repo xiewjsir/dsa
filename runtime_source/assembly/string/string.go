@@ -15,7 +15,6 @@ type reflect.SliceHeader struct {
 }
 */
 
-
 var Name string
 
 func main() {

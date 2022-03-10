@@ -14,7 +14,7 @@ func main() {
 			fmt.Println(i)
 		}()
 	}
-	
+
 	//var ch = make(chan int)
 	//<- ch
 	time.Sleep(time.Second)
