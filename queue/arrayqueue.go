@@ -17,21 +17,21 @@ type arrayQueue struct {
 func (a *arrayQueue) Add(v string) *arrayQueue {
 	a.lock.Lock()
 	defer a.lock.Unlock()
-	
+
 	a.array = append(a.array, v)
 	a.size++
-	
+
 	return a
 }
 
 func (a *arrayQueue) Remove() string {
 	a.lock.Lock()
 	defer a.lock.Unlock()
-	
+
 	if a.size == 0 {
 		panic("queue is empty")
 	}
-	
+
 	v := a.array[0]
 	a.size--
 	/*    直接原位移动，但缩容后继的空间不会被释放
@@ -42,14 +42,14 @@ func (a *arrayQueue) Remove() string {
 	      // 原数组缩容
 	      a.array = a.array[0 : a.size-1]
 	*/
-	
+
 	// 创建新的数组，移动次数过多
 	array := make([]string, a.size, a.size)
 	for i := 0; i < a.size; i++ {
 		array[i] = a.array[i+1]
 	}
 	a.array = array
-	
+
 	return v
 }
 

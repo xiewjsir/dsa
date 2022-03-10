@@ -5,15 +5,15 @@ import (
 	"sort"
 	"strconv"
 	"sync"
-	
-	"github.com/tal-tech/go-zero/core/lang"
-	"github.com/tal-tech/go-zero/core/mapping"
+
+	"github.com/zeromicro/go-zero/core/lang"
+	"github.com/zeromicro/go-zero/core/mapping"
 )
 
 const (
 	// TopWeight is the top weight that one entry might set.
 	TopWeight = 100
-	
+
 	minReplicas = 100
 	prime       = 16777619
 )
@@ -22,7 +22,7 @@ type (
 	// Func defines the hash method.
 	//哈希函数
 	Func func(data []byte) uint64
-	
+
 	// A ConsistentHash is a ring hash implementation.
 	//一致性哈希
 	ConsistentHash struct {
@@ -54,11 +54,11 @@ func NewCustomConsistentHash(replicas int, fn Func) *ConsistentHash {
 	if replicas < minReplicas {
 		replicas = minReplicas
 	}
-	
+
 	if fn == nil {
 		fn = Hash
 	}
-	
+
 	return &ConsistentHash{
 		hashFunc: fn,
 		replicas: replicas,

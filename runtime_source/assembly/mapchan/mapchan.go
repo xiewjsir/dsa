@@ -6,6 +6,5 @@ var m map[string]int
 var ch chan int
 
 func main() {
-	fmt.Println(m,ch)
+	fmt.Println(m, ch)
 }
-

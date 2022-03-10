@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func print(s int)  {
+func print(s int) {
 	fmt.Println(s)
 }
 

@@ -1,9 +1,11 @@
 package main
+
 import (
 	"log"
 	"runtime"
 	"time"
 )
+
 func readMemStats() {
 	var ms runtime.MemStats
 	runtime.ReadMemStats(&ms)

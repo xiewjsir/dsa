@@ -28,7 +28,7 @@ func main() {
 	if err != nil {
 		log.Fatal("dialing:", err)
 	}
-	
+
 	var reply string
 	err = client.Hello("hello", &reply)
 	if err != nil {

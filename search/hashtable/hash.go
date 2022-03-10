@@ -169,13 +169,13 @@ func (m *HashMap) Delete(key string) {
 
 }
 
-func (m *HashMap)Range()  {
+func (m *HashMap) Range() {
 	m.Lock()
 	defer m.Unlock()
 
-	for _,pairs := range m.array{
-		for pairs !=nil{
-			fmt.Println(pairs.key,pairs.value)
+	for _, pairs := range m.array {
+		for pairs != nil {
+			fmt.Println(pairs.key, pairs.value)
 			pairs = pairs.next
 		}
 	}

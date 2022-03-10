@@ -34,21 +34,21 @@ func NewSkipList(opt ...int) *skipList {
 		level: level,
 		rand:  rand.New(rand.NewSource(time.Now().UnixNano())),
 	}
-	
+
 	for l := range sl.head.next {
 		sl.head.next[l] = sl.tail
 	}
-	
+
 	return sl
 }
 
 func (sl *skipList) Add(key int, data interface{}) {
 	sl.m.Lock()
 	defer sl.m.Unlock()
-	
+
 	// 1. 随机一层用来开始添加该节点
 	l := sl.randomLevel()
-	
+
 	// 2. 从该层还是寻找第一个比key大的节点
 	addPos := make([]*skipListNode, l)
 	node := sl.head
@@ -66,13 +66,13 @@ func (sl *skipList) Add(key int, data interface{}) {
 			}
 		}
 	}
-	
+
 	nowNode := &skipListNode{key: key, data: data, next: make([]*skipListNode, l)}
 	for level, pos := range addPos {
 		nowNode.next[level] = pos.next[level]
 		pos.next[level] = nowNode
 	}
-	
+
 	sl.length++
 }
 
@@ -86,7 +86,7 @@ func (sl *skipList) randomLevel() int {
 func (sl *skipList) Remove(key int) bool {
 	sl.m.Lock()
 	defer sl.m.Unlock()
-	
+
 	node := sl.head
 	remPos := make([]*skipListNode, sl.level)
 	var target *skipListNode
@@ -104,7 +104,7 @@ func (sl *skipList) Remove(key int) bool {
 			}
 		}
 	}
-	
+
 	if target != nil {
 		for l, pos := range remPos {
 			if pos != nil {
@@ -114,14 +114,14 @@ func (sl *skipList) Remove(key int) bool {
 		target = nil
 		sl.level--
 	}
-	
+
 	return true
 }
 
 func (sl *skipList) Search(key int) interface{} {
 	sl.m.RLock()
 	defer sl.m.RUnlock()
-	
+
 	node := sl.head
 	for level := sl.level - 1; level >= 0; level-- {
 		for {
@@ -135,11 +135,11 @@ func (sl *skipList) Search(key int) interface{} {
 			}
 		}
 	}
-	
+
 	return false
 }
 
-func (sl *skipList)Len() int {
+func (sl *skipList) Len() int {
 	sl.m.Lock()
 	defer sl.m.Unlock()
 	return sl.length

@@ -1,12 +1,11 @@
 package avl
 
-
 func RightRotation(root *AVLTreeNode) *AVLTreeNode {
 	pivot := root.Left
 	b := pivot.Right
 	pivot.Right = root
 	root.Left = b
-	
+
 	pivot.UpdateHeight()
 	root.UpdateHeight()
 	return pivot
@@ -17,7 +16,7 @@ func LeftRotation(root *AVLTreeNode) *AVLTreeNode {
 	b := pivot.Left
 	pivot.Left = root
 	root.Right = b
-	
+
 	pivot.UpdateHeight()
 	root.UpdateHeight()
 	return pivot

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestTree(t *testing.T)  {
+func TestTree(t *testing.T) {
 	tr := &TreeNode{Data: "A"}
 	tr.Left = &TreeNode{Data: "B"}
 	tr.Right = &TreeNode{Data: "C"}

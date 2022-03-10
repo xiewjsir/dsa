@@ -7,13 +7,13 @@ func main() {
 	ch := make(chan int)
 	wait := make(chan int)
 	go func() {
-		for i := range ch{
-			fmt.Println("broker point 2",i)
+		for i := range ch {
+			fmt.Println("broker point 2", i)
 		}
 	}()
-	
-	ch<-2
-	
+
+	ch <- 2
+
 	fmt.Println("broker point 3")
 	<-wait
 }

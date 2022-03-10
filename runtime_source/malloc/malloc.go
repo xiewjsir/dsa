@@ -13,7 +13,7 @@ type largeobj struct {
 	arr [1 << 26]byte
 }
 
-func tiny()   {
+func tiny() {
 	y := 100000
 	fmt.Println(y) // call $runtime.convT64
 }
@@ -21,7 +21,7 @@ func tiny()   {
 func large() {
 	large := largeobj{}
 	println(&large)
-	println(unsafe.Sizeof(large)/1024/1024)
+	println(unsafe.Sizeof(large) / 1024 / 1024)
 }
 
 func small() {

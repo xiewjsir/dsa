@@ -5,11 +5,11 @@ func Fibonacci(n int) int {
 	//if n <= 2 {
 	//	return 1
 	//}
-	
+
 	if n < 2 {
 		return n
 	}
-	
+
 	return Fibonacci(n-1) + Fibonacci(n-2)
 }
 
@@ -18,7 +18,7 @@ func Fibonacci2(n, a, b int) int {
 	if n == 1 {
 		return a
 	}
-	
+
 	return Fibonacci2(n-1, b, a+b)
 }
 
@@ -26,14 +26,14 @@ func Fibonacci2(n, a, b int) int {
 func Fibonacci3(n int) int {
 	var a = 1
 	var b = 1
-	
+
 	if n <= 2 {
 		return 1
 	}
-	
+
 	for i := 2; i < n; i++ {
 		a, b = b, a+b
 	}
-	
+
 	return b
 }

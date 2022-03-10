@@ -5,8 +5,9 @@ import "fmt"
 func If(ok bool, a, b int) int
 
 func main() {
-	fmt.Println(If(true,1,2))
+	fmt.Println(If(true, 1, 2))
 }
+
 /*
 func If(ok bool, a, b int) int {
 	if ok { return a } else { return b }

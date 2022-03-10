@@ -22,19 +22,19 @@ func (list *doubleList) Len() int {
 func (list *doubleList) AddNodeFromHead(n int, v string) {
 	list.lock.Lock()
 	defer list.lock.Unlock()
-	
+
 	if n != 0 && n >= list.len {
 		panic("index out")
 	}
-	
+
 	newNode := new(listNode)
 	newNode.value = v
-	
+
 	node := list.head
 	for ; n > 0; n-- {
 		node = node.next
 	}
-	
+
 	if node.IsNil() {
 		list.head = newNode
 		list.tail = newNode
@@ -51,20 +51,20 @@ func (list *doubleList) AddNodeFromHead(n int, v string) {
 			node.prev = newNode
 		}
 	}
-	
+
 	list.len++
-	
+
 	return
 }
 
 func (list *doubleList) AddNodeFromTail(n int, v string) {
 	list.lock.Lock()
 	defer list.lock.Unlock()
-	
+
 	if n != 0 && n >= list.len {
 		panic("index out")
 	}
-	
+
 	newNode := new(listNode)
 	newNode.value = v
 
@@ -72,7 +72,7 @@ func (list *doubleList) AddNodeFromTail(n int, v string) {
 	for ; n > 0; n-- {
 		node = node.prev
 	}
-	
+
 	if node.IsNil() {
 		list.head = newNode
 		list.tail = newNode
@@ -85,12 +85,12 @@ func (list *doubleList) AddNodeFromTail(n int, v string) {
 		} else {
 			next.prev = newNode
 			newNode.next = next
-			
+
 			node.next = newNode
 			newNode.prev = node
 		}
 	}
-	
+
 	list.len++
 	return
 }
@@ -100,12 +100,12 @@ func (list *doubleList) IndexFromHead(n int) *listNode {
 	if n > list.len {
 		panic("index out")
 	}
-	
+
 	node := list.head
 	for ; n > 0; n-- {
 		node = node.next
 	}
-	
+
 	return node
 }
 
@@ -114,12 +114,12 @@ func (list *doubleList) IndexFromTail(n int) *listNode {
 	if n > list.len {
 		panic("index out")
 	}
-	
+
 	node := list.tail
 	for ; n > 0; n-- {
 		node = node.prev
 	}
-	
+
 	return node
 }
 
@@ -128,16 +128,16 @@ func (list *doubleList) PopFromHead(n int) *listNode {
 	// 加并发锁
 	list.lock.Lock()
 	defer list.lock.Unlock()
-	
+
 	if n >= list.len {
 		return nil
 	}
-	
+
 	node := list.head
 	for ; n > 0; n-- {
 		node = node.next
 	}
-	
+
 	prev := node.prev
 	next := node.next
 	if prev.IsNil() && next.IsNil() {
@@ -153,27 +153,26 @@ func (list *doubleList) PopFromHead(n int) *listNode {
 		prev.next = next
 		next.prev = prev
 	}
-	
+
 	list.len--
 	return node
 }
-
 
 // PopFromTail 从尾部开始往前找, 获取第N+1个位置的节点, 并移除返回
 func (list *doubleList) PopFromTail(n int) *listNode {
 	// 加并发锁
 	list.lock.Lock()
 	defer list.lock.Unlock()
-	
+
 	if n >= list.len {
 		return nil
 	}
-	
+
 	node := list.head
 	for ; n > 0; n-- {
 		node = node.prev
 	}
-	
+
 	prev := node.prev
 	next := node.next
 	if prev.IsNil() && next.IsNil() {
@@ -189,7 +188,7 @@ func (list *doubleList) PopFromTail(n int) *listNode {
 		prev.next = next
 		next.prev = prev
 	}
-	
+
 	list.len--
 	return node
 }
@@ -198,6 +197,7 @@ func (list *doubleList) PopFromTail(n int) *listNode {
 func (list *doubleList) First() *listNode {
 	return list.head
 }
+
 // Last 返回列表链表尾结点
 func (list *doubleList) Last() *listNode {
 	return list.tail

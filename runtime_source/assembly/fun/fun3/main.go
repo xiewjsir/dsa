@@ -10,5 +10,5 @@ func printsum(a, b int) {
 }
 
 func sum(a, b int) int {
-	return a+b
+	return a + b
 }

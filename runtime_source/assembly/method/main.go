@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 type MyInt int
+
 func (v MyInt) Twice() int
 func MyIntTwice(v MyInt) int
 
@@ -19,5 +20,3 @@ func main() {
 //func MyIntTwice(v MyInt) int {
 //	return int(v)*2
 //}
-
-

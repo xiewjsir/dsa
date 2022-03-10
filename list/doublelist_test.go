@@ -49,4 +49,3 @@ func TestDoubleList(t *testing.T) {
 	fmt.Println("----------")
 	fmt.Println("len", list.Len())
 }
-
