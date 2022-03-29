@@ -1,4 +1,4 @@
-package sort
+package _select
 
 func SelectSort(list []int) {
 	n := len(list)

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package hello;
+
+option go_package = "proto/hello";
+
+message String {
+  string value = 1;
+}
+
+service HelloServer{
+  rpc Hello(String)returns (String);
+}

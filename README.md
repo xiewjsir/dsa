@@ -37,3 +37,29 @@ ok      dsa/other       4.126s
 
 ```
 
+```go
+b->c,初始,c为白
+a->c,c赋值a,触发写屏障,把c置为灰
+b->nil,b删除对c的引用时,触发写屏障,把c置为灰
+
+// 灰色赋值器 Dijkstra 插入屏障 触发点在写入时
+//slot 当前下游对像
+//ptr新下游对象
+func DijkstraWritePointer(slot *unsafe.Pointer, ptr unsafe.Pointer) {
+	shade(ptr)
+	*slot = ptr
+}
+
+// 黑色赋值器 Yuasa 删除屏障 触发点在删除时
+func YuasaWritePointer(slot *unsafe.Pointer, ptr unsafe.Pointer) {
+	shade(*slot)
+	*slot = ptr
+}
+
+// 混合写屏障
+func HybridWritePointerSimple(slot *unsafe.Pointer, ptr unsafe.Pointer) {
+	shade(*slot)
+	shade(ptr)
+	*slot = ptr
+}
+```

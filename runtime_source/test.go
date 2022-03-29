@@ -2,24 +2,32 @@ package main
 
 import (
 	"fmt"
-	"unsafe"
+	"sync"
 )
 
-func main() {
-	Foo()
+
+type Person struct {
+	mux sync.Mutex
+	rwmux sync.RWMutex
 }
 
-func Foo() {
-	var local [1]struct{
-		a bool
-		b int16
-		c []byte
-	}
-	var SP = &local[0]
+func Reduce(p1 *Person) {
+	fmt.Println("step...", )
+	p1.mux.Lock()
+	fmt.Println(p1)
+	defer p1.mux.Unlock()
+	fmt.Println("over...")
+}
+
+func main() {
+	var p *Person = &Person{}
+	p.mux.Lock()
+	go Reduce(p)
+	p.mux.Unlock()
+	fmt.Println(111)
 	
-	fmt.Println(&local[0].a,fmt.Sprintf("%p",SP),fmt.Sprintf("%x",uintptr(unsafe.Pointer(&SP))),unsafe.Pointer(uintptr(unsafe.Pointer(&SP))+unsafe.Offsetof(local[0].a)))
+	p.rwmux.RLock()
 	
-	//_ = -(unsafe.Sizeof(local)-unsafe.Offsetof(local[0].a)) + uintptr(unsafe.Pointer(&SP)) // a
-	//_ = -(unsafe.Sizeof(local)-unsafe.Offsetof(local[0].b)) + uintptr(unsafe.Pointer(&SP)) // b
-	//_ = -(unsafe.Sizeof(local)-unsafe.Offsetof(local[0].c)) + uintptr(unsafe.Pointer(&SP)) // c
+	for {}
+	
 }

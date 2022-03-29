@@ -1,4 +1,4 @@
-package sort
+package bubble
 
 import (
 	"fmt"

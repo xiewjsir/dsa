@@ -1,4 +1,4 @@
-package sort
+package _select
 
 import (
 	"fmt"

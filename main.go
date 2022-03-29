@@ -1,7 +1,17 @@
 package main
 
+import (
+	"fmt"
+)
+
+func g2(n int, ch chan int) {
+	ch <- n * n
+}
+
 func main() {
 	ch := make(chan int)
-	ch<-1
-	println(<-ch)
+	
+	go g2(100, ch)
+	
+	fmt.Println(<-ch)
 }
