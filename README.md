@@ -63,3 +63,8 @@ func HybridWritePointerSimple(slot *unsafe.Pointer, ptr unsafe.Pointer) {
 	*slot = ptr
 }
 ```
+
+- [Go语言高级编程(Advanced Go Programming)](https://chai2010.cn/advanced-go-programming-book/ch1-basic/readme.html)
+- [Go 语言设计与实现](https://www.bookstack.cn/read/draveness-golang/30cd28c181a56e61.md#abr725)
+- [go语言调度器源代码情景分析](https://mp.weixin.qq.com/mp/homepage?__biz=MzU1OTg5NDkzOA==&hid=1&sn=8fc2b63f53559bc0cee292ce629c4788&scene=18&devicetype=iOS15.0&version=1800112b&lang=zh_CN&nettype=WIFI&ascene=7&session_us=gh_8b5b60477260&fontScale=100&pass_ticket=zibsUD4Cw79t%2B7Tq1GkyJp7Zp0Q8%2BI0hol4Q9zIy4QPiaps6nyJLOGf0v51IGzNt&wx_header=3&scene=1)
+- [数据结构和算法（Golang实现）](https://www.bookstack.cn/read/hunterhug-goa.c/algorithm-sort-quick_sort.md)
